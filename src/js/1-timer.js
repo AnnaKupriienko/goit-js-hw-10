@@ -5,71 +5,83 @@ import "izitoast/dist/css/iziToast.min.css";
 
 const calendar = document.getElementById("datetime-picker")
 const btnStart = document.querySelector("[data-start]")
-const currentDays = document.querySelector("[data-days")
-const currentHours = document.querySelector("[data-hours")
-const currentMinutes = document.querySelector("[data-minutes")
-const currentSeconds = document.querySelector("[data-seconds")
+const currentDays = document.querySelector("[data-days]")
+const currentHours = document.querySelector("[data-hours]")
+const currentMinutes = document.querySelector("[data-minutes]")
+const currentSeconds = document.querySelector("[data-seconds]")
 
-btnStart.disabled = true; 
+
 btnStart.addEventListener("click", () => {
     btnStart.disabled = true;
     calendar.disabled = true;
     startTimer()
 });
-
-
+btnStart.disabled = true; 
 let userSelectedDate;
 let delta;
+let interval;
 
 const options = {
-  enableTime: true,
-  time_24hr: true,
-  defaultDate: new Date(),
-  minuteIncrement: 1,
+    enableTime: true,
+    time_24hr: true,
+    defaultDate: new Date(),
+    minuteIncrement: 1,
+  
     onClose(selectedDates) {
-    userSelectedDate = selectedDates[0];
-        if (userSelectedDate < options.defaultDate) {
-            btnStart.disabled = true; 
+        userSelectedDate = new Date(selectedDates[0]).getTime();
+        const currentDate = Date.now();
+        if (userSelectedDate < currentDate) {
+            btnStart.disabled = true;
             iziToast.error({
                 title: 'Error',
+                fontSize: 'large',
+                close: false,
+                position: 'bottomRight',
+                messageColor: 'black',
+                timeout: 3000,
+                backgroundColor: 'red',
                 message: '"Please choose a date in the future"',
             });
         }
         else {
-            btnStart.disabled = false; 
-            delta = userSelectedDate - options.defaultDate;
-            updateClock(convertMs(userSelectedDate))
-            console.log(delta);
-            }
-    console.log(selectedDates[0])},
+            btnStart.disabled = false;
+            delta = userSelectedDate - currentDate;
+            updateClockFace(convertMs(delta))
+            console.log(updateClockFace)
+        };
+    }
 };
+    
 flatpickr(calendar, options);
 
-let intervalId;
+
 function timer() { 
     if (delta > 1000) {
-        delta += 1000;
-        updateClock(convertMs(delta))
+        delta -= 1000;
+        updateClockFace(convertMs(delta));
     }
     else {
-        clearInterval(intervalId)
+        clearInterval(interval);
         calendar.disabled = false;
     }
 }
-    
+
 function startTimer() {
-  clearInterval(intervalId);
-  intervalId = setInterval(timer, 1000);
+    clearInterval(interval);
+    interval = setInterval(timer, 1000);
+ 
 }
 
-
-function updateClock (days, hours, minutes, seconds) {
-    currentDays.textContent = `${days}`
-    currentHours.textContent = `${hours}`
-    currentMinutes.textContent = `${minutes}`
-    currentSeconds.textContent = `${seconds}`
+function updateClockFace({ days, hours, minutes, seconds }) {
+    currentDays.textContent = `${days}`;
+    currentHours.textContent = `${hours}`;
+    currentMinutes.textContent = `${minutes}`;
+    currentSeconds.textContent = `${seconds}`;
 } 
 
+function pad (value) {
+    return String(value).padStart(2, "0");
+}
 
 function convertMs(ms) {
     // Number of milliseconds per unit of time
@@ -86,13 +98,6 @@ function convertMs(ms) {
     const minutes = pad(Math.floor(((ms % day) % hour) / minute));
     // Remaining seconds
     const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
-
     return { days, hours, minutes, seconds };
 }
-console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
 
-function pad (value) {
-    return String(value).padStart(2,"0")
-}
