@@ -17,7 +17,7 @@ btnStart.addEventListener("click", () => {
 });
 btnStart.disabled = true; 
 let userSelectedDate;
-let delta;
+let timeRemaining;
 let interval;
 
 const options = {
@@ -44,8 +44,8 @@ const options = {
         }
         else {
             btnStart.disabled = false;
-            delta = userSelectedDate - currentDate;
-            updateClockFace(convertMs(delta))
+            timeRemaining = userSelectedDate - currentDate;
+            updateClockFace(convertMs(timeRemaining))
             console.log(updateClockFace)
         };
     }
@@ -54,9 +54,9 @@ const options = {
 flatpickr(calendar, options);
 
 function timer() { 
-    if (delta > 1000) {
-        delta -= 1000;
-        updateClockFace(convertMs(delta));
+    if (timeRemaining > 1000) {
+        timeRemaining -= 1000;
+        updateClockFace(convertMs(timeRemaining));
     }
     else {
         clearInterval(interval);

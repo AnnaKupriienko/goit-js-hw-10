@@ -6,14 +6,14 @@ const form = document.querySelector(".form")
 form.addEventListener("submit", event => {
     event.preventDefault();
     const delay = Number(form.delay.value);
-    const btn = form.state.value;
+    const promiseState = form.state.value;
     const promise = new Promise((res, rej) => {
         setTimeout(() => {
-            if (btn === 'fulfilled') {
-                res('Fulfilled')
+            if (promiseState === 'fulfilled') {
+                res(`${delay}`)
             }
             else {
-                rej('Rejected')
+                rej(`${delay}`)
             }
         }, delay)
     })
