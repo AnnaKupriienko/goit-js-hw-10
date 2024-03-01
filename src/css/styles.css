@@ -79,3 +79,41 @@ button:hover{
       color: #6c8cff;
 
     }
+
+        fieldset {
+        display: flex;
+        width: 333px;
+        height: 50px;
+        margin-bottom: 25px;
+         border-radius: 8px;
+         justify-content: space-around;
+        border: 1px solid #808080;
+        }
+    
+        .form {
+          display: flex;
+          flex-direction: column;
+          margin-left:50px;
+        }
+        .snackbtn{
+          display: flex;
+          cursor: pointer;
+          font-size: 19px;
+          width: 360px;
+          max-height: 40px;
+          border-radius: 8px;
+          padding: 8px 16px 8px 16px;
+          gap: 10px;
+          background-color: #4E75FF;
+          justify-content: center;
+          color: #FFFFFF;
+          font-size: 16px;
+          border: none;
+        }
+        .delay{
+          display: flex;
+          margin-top: 10px;
+          width: 275px;
+          height: 30px;
+          margin-left: 5px;
+        }

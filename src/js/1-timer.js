@@ -10,7 +10,6 @@ const currentHours = document.querySelector("[data-hours]")
 const currentMinutes = document.querySelector("[data-minutes]")
 const currentSeconds = document.querySelector("[data-seconds]")
 
-
 btnStart.addEventListener("click", () => {
     btnStart.disabled = true;
     calendar.disabled = true;
@@ -53,7 +52,6 @@ const options = {
 };
     
 flatpickr(calendar, options);
-
 
 function timer() { 
     if (delta > 1000) {

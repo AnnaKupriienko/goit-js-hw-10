@@ -10,19 +10,24 @@
   <body>
     <section>
       <a href="./index.html">Go to home</a>
-      <h1></h1>
-      <form class="feedback-form" autocomplete="off">
+      <form class="form">
         <label>
-          Email
-          <input class="email" type="email" name="email" autofocus />
+          Delay (ms)
+          <input class="delay" type="number" name="delay" required />
         </label>
-        <label>
-          Message
-          <textarea class="text" name="message" rows="8"></textarea>
-        </label>
-        <button class="sbm" type="submit">Submit</button>
+        <fieldset>
+          <legend>State</legend>
+          <label>
+            <input type="radio" name="state" value="fulfilled" required />
+            Fulfilled
+          </label>
+          <label>
+            <input type="radio" name="state" value="rejected" required />
+            Rejected
+          </label>
+        </fieldset>
+        <button class="snackbtn"    type="submit">Create notification</button>
       </form>
-
     </section>
     <script type="module" src="./js/2-snackbar.js"></script>
   </body>
