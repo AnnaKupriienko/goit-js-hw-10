@@ -12,7 +12,7 @@
   gap: 27px;
   width: 346px;
   height: 72px;
-  margin-left: 156px; 
+  margin-left: 20px; 
 }
 
 .field {
@@ -33,7 +33,7 @@ button {
   cursor: pointer;
   font-size: 19px;
   width: 75px;
-  height: 40px;
+  max-height: 40px;
   border-radius: 8px;
   padding: 8px 16px 8px 16px;
   gap:10px;
@@ -66,3 +66,16 @@ button:hover{
       line-height: 1.5;
       letter-spacing: 0.04em;
     } 
+    a{
+      display: block;
+      margin-bottom: 10px;
+      margin-left: 20px;
+      font-family: Montserrat;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      color: #6c8cff;
+
+    }

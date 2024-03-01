@@ -36,7 +36,7 @@ const options = {
                 title: 'Error',
                 fontSize: 'large',
                 close: false,
-                position: 'bottomRight',
+                position: 'topCenter',
                 messageColor: 'black',
                 timeout: 3000,
                 backgroundColor: 'red',
